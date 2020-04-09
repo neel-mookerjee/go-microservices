@@ -1,0 +1,9 @@
+global:
+  env: dev
+  db_table_prefix: "dev."
+
+pod:
+  image: 12345678901.dkr.ecr.us-west-2.amazonaws.com/internal-services:latest
+
+aws:
+  role: arn:aws:iam::12345678901:role/testns/k8s/platform

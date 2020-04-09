@@ -1,0 +1,24 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-deployment
+      annotations:
+        pod.alpha.kubernetes.io/initialized: "true"
+        kube2iam.beta.domain.net/role: {{ .Values.aws.role }}
+    spec:
+      containers:
+        - name: go
+          image: {{ .Values.pod.image }}
+          imagePullPolicy: Always
+          env:
+            - name: ENVIRONMENT
+              value: "{{ .Values.global.env }}"
+            - name: DB_TABLE_PREFIX
+              value: "{{ .Values.global.db_table_prefix }}"

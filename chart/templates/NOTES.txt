@@ -1,0 +1,2 @@
+# Your URL –
+http://{{ .Release.Name }}.r53.domain.net

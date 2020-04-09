@@ -1,0 +1,17 @@
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: {{ .Release.Name }}
+  labels:
+    app: {{ .Release.Name }}
+  namespace: testns
+spec:
+  rules:
+    - host: {{ .Release.Name }}.r53.domain.net
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: {{ .Release.Name }}-service
+              servicePort: 8080
